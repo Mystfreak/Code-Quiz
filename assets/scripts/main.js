@@ -34,6 +34,43 @@ let timedInterval;
 
 // Event listener for start button
 startButton.addEventListener("click", () => {
-    
+
 });
 
+// Function to get questions
+function getQuestions() {
+
+    let title = questions[questionIndex];
+
+    questionTitle.innerHTML = title.question;
+    questionOptions.innerHTML = title.option.map(
+        (choice) =>
+        `<button value="${choice}" >${choice}</button>
+        `
+    )
+    .join('');
+    questionOptions.addEventListener("click", selectOptions);
+
+}
+
+// Function to play sounds when answers are correct or wrong
+function selectOptions(event) {
+    button = event.target;
+    selected = event.target.value;
+
+    let answer = questions[questionIndex].answer;
+
+// If selected answer is correct score goes up and sound is played
+    if (selected === answer) {
+        button.setAttribute('style', 'background-color:green');
+        score++;
+        correctSound.play();
+    } else {
+        button.setAttribute('style', 'background-color:red');
+        time -= 10;
+        wrongSound.play();
+    }
+
+    
+
+}
