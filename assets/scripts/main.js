@@ -34,16 +34,20 @@ let timedInterval;
 
 // Event listener for start button
 startButton.addEventListener("click", () => {
-
+    getQuestions();
+    startScreen.classList.add("hide");
+    questionBox.classList.remove("hide");
+    startTimer();
 });
 
 // Function to get questions
 function getQuestions() {
 
-    let title = questions[questionIndex];
+    let question = questions[questionIndex];
 
-    questionTitle.innerHTML = title.question;
-    questionOptions.innerHTML = title.option.map(
+    questionTitle.innerHTML = question.question;
+    questionOptions.innerHTML = question.option
+    .map(
         (choice) =>
         `<button value="${choice}" >${choice}</button>
         `
@@ -71,6 +75,50 @@ function selectOptions(event) {
         wrongSound.play();
     }
 
-    
+    // iterating though questions until it gets to the end
+    function checkQuestion() {
+        setTimeout(() => {
+            getQuestions();
+        }, 1000);
 
+        if(questionIndex < questions.length - 1) {
+            questionIndex++;
+        } else {
+            finalResult();
+        }
+    }
+
+    function finalResult() {
+
+        questionBox.classList.add("hide");
+        endScreen.classList.remove("hide");
+        clearInterval(timedInterval);
+        timer.innerText = 120;
+    }
+// getting info and storing it in the local storage
+    submitButton.addEventListener("click", () => {
+        localStorage.getItem("userInfo");
+        let newPlayer = {
+            score: score,
+            intials: initials.value.toUpperCase(),
+        }
+
+        userInfo.push(newPlayer);
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        intials.value = "";
+        endScreen.classList.add("hide");
+        startScreen.classList.remove("hide");
+    });
+// Setting timer
+    function startTimer() {
+        timedInterval = setInterval(() => {
+          time--;
+          timer.innerText = time;
+          if (time <= 0) {
+            clearInterval(timedInterval);
+            result();
+            timer.innerText = 120;
+          }
+        }, 1000);
+   }
 }
