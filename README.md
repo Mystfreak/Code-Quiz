@@ -1,9 +1,12 @@
 # Code-Quiz
 
 ## Aim:
-### Build a timed coding quiz with multiple-choice questions. 
+#### Build a timed coding quiz with multiple-choice questions. 
 
 ### Screenshots
+![image](front.png)
+
+
 
 
 ### Acceptance Criteria:
