@@ -1,9 +1,14 @@
 # Code-Quiz
 
 ## Aim:
-### Build a timed coding quiz with multiple-choice questions. 
+#### Build a timed coding quiz with multiple-choice questions. 
 
 ### Screenshots
+![image](front.png)
+![image](questions.png)
+![image](finalscore.png)
+
+
 
 
 ### Acceptance Criteria:
@@ -18,3 +23,6 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
+
+## Link:
+[Deployment link](https://mystfreak.github.io/Code-Quiz/)
